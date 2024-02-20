@@ -16,7 +16,7 @@
     "url": "git+https://github.com/dhis2/event-reports-app.git"
   },
   "keywords": [
-    "DataOrb",
+    "DHIS 2",
     "HISP",
     "Pivot"
   ],
@@ -54,13 +54,13 @@
     "webpack-dev-server": "1.14.0"
   },
   "manifest.webapp": {
-    "name": "DataOrb event reports app",
+    "name": "DHIS2 event reports app",
     "icons": {
       "48": "icon.png"
     },
     "developer": {
       "url": "",
-      "name": "DataOrb visualization team"
+      "name": "DHIS2 visualization team"
     },
     "activities": {
       "dhis": {
