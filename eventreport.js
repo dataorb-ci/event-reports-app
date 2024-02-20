@@ -2636,7 +2636,7 @@
 	
 	    saveButton = Ext.create('Ext.button.Button', {
 	        text: i18n.save,
-	        // DataOrb-1147: avoid server conflict error when name value is not set
+	        // DHIS2-1147: avoid server conflict error when name value is not set
 	        disabled: true,
 	        xable: function xable() {
 	            this.setDisabled(!nameTextField.getValue());
@@ -2649,7 +2649,7 @@
 	    saveButtonHandler = function saveButtonHandler() {
 	        var name = nameTextField.getValue();
 	
-	        // DataOrb-1147: avoid submitting when no name is available
+	        // DHIS2-1147: avoid submitting when no name is available
 	        if (!name) {
 	            return;
 	        }
@@ -2932,7 +2932,7 @@
 	                    if (record.data.access['delete']) {
 	                        uiManager.confirmDelete(i18n.delete_favorite, function () {
 	                            instanceManager.delById(id, function () {
-	                                // DataOrb-1475: preserve the filter when reloading the favorite list
+	                                // DHIS2-1475: preserve the filter when reloading the favorite list
 	                                favoriteStore.loadStore(getStoreUrl(null, true));
 	
 	                                if (id === instanceManager.getStateFavoriteId()) {
@@ -3076,7 +3076,7 @@
 	    });
 	
 	    nameTextField.setEventKeyUpHandler(saveButtonHandler);
-	    // DataOrb-1147: enable Save button on name value change
+	    // DHIS2-1147: enable Save button on name value change
 	    nameTextField.setEventChangeHandler(function () {
 	        saveButton.xable();
 	    });
@@ -8886,7 +8886,7 @@
 	                var isTooLongDescription = description.length > descriptionMaxNumberCharacter;
 	                var shortDescription = description.substring(0, descriptionMaxNumberCharacter) + ' ... ';
 	
-	                // DataOrb-2210: render line breaks
+	                // DHIS2-2210: render line breaks
 	                description = description.replace(/\n/g, '<br />');
 	                shortDescription = shortDescription.replace(/\n/g, '<br />');
 	
@@ -12847,7 +12847,7 @@
 	
 	    request.setError(function (r) {
 	        // 409
-	        // DataOrb-2020: 503 error (perhaps analytics maintenance mode)
+	        // DHIS2-2020: 503 error (perhaps analytics maintenance mode)
 	        if ((0, _isObject2.default)(r) && (r.status == 409 || r.status == 503)) {
 	            uiManager.unmask();
 	
@@ -13704,7 +13704,7 @@
 	        t.interpretationId = c.interpretationId;
 	    }
 	
-	    // DataOrb-2784: propagate both name and displayName
+	    // DHIS2-2784: propagate both name and displayName
 	    // to avoid name being replaced by a translation in the translate dialog
 	    // name
 	    if ((0, _isString2.default)(c.name)) {
@@ -14586,13 +14586,13 @@
 	
 	    var uiManager = refs.uiManager;
 	
-	    // DataOrb-3508: pass "null" as format
+	    // DHIS2-3508: pass "null" as format
 	    var metaDataRequest = this.req(source, null);
 	    var dataRequest = this.req(source, null, true);
 	
 	    var errorFn = function errorFn(r) {
 	        // 409
-	        // DataOrb-2020: 503 error (perhaps analytics maintenance mode)
+	        // DHIS2-2020: 503 error (perhaps analytics maintenance mode)
 	        if ((0, _isObject2.default)(r) && (r.status == 409 || r.status === 503)) {
 	            uiManager.unmask();
 	
@@ -16786,17 +16786,17 @@
 	                index: 4,
 	                id: 'SCHEDULE',
 	                name: i18nManager.get('scheduled') || 'Scheduled'
-	            },
-	            overdue: {
-	                index: 5,
-	                id: 'OVERDUE',
-	                name: i18nManager.get('overdue') || 'Overdue'
-	            },
-	            skipped: {
-	                index: 6,
-	                id: 'SKIPPED',
-	                name: i18nManager.get('skipped') || 'Skipped'
 	            }
+	            // overdue: {
+	            //     index: 5,
+	            //     id: 'OVERDUE',
+	            //     name: i18nManager.get('overdue') || 'Overdue',
+	            // },
+	            // skipped: {
+	            //     index: 6,
+	            //     id: 'SKIPPED',
+	            //     name: i18nManager.get('skipped') || 'Skipped',
+	            // },
 	        };
 	    };
 	
@@ -16827,10 +16827,10 @@
 	                id: 'INCIDENT_DATE',
 	                name: i18nManager.get('incident_date') || 'Incident date'
 	            },
-	            duedate: {
+	            scheduleddate: {
 	                index: 6,
-	                id: 'DUE_DATE',
-	                name: i18nManager.get('due_date') || 'Due date'
+	                id: 'SCHEDULED_DATE',
+	                name: i18nManager.get('scheduled_date') || 'Scheduled date'
 	            },
 	            completeddate: {
 	                index: 7,
@@ -25160,7 +25160,7 @@
 	    cmpConfig.i18n.untitled = cmpConfig.i18n.untitled || i18n.untitled || 'Untitled';
 	
 	    cmpConfig.theme = cmpConfig.theme || uiManager.getTheme();
-	    cmpConfig.systemTitle = cmpConfig.systemTitle || appManager.systemSettings.systemTitle || 'DataOrb';
+	    cmpConfig.systemTitle = cmpConfig.systemTitle || appManager.systemSettings.systemTitle || 'DHIS 2';
 	    cmpConfig.logoWidth = cmpConfig.logoWidth ? parseFloat(cmpConfig.logoWidth) : 418;
 	    cmpConfig.aboutFn = cmpConfig.aboutFn || function () {
 	        (0, _AboutWindow.AboutWindow)(c).getData();
@@ -29193,7 +29193,7 @@
 	                organisationUnitGroup.hide();
 	                treePanel.enable();
 	            } else if (param === 'group') {
-	                // DataOrb-561: avoid showing the group ids in the combobox when
+	                // DHIS2-561: avoid showing the group ids in the combobox when
 	                // loading a favorite and expanding the OU panel
 	                organisationUnitGroupStore.load();
 	
@@ -30683,7 +30683,7 @@
 	        }).run();
 	    };
 	
-	    // DataOrb-1496: filter by data element, program attribute or program indicator
+	    // DHIS2-1496: filter by data element, program attribute or program indicator
 	    var dataElementType = Ext.create('Ext.form.field.ComboBox', {
 	        editable: false,
 	        valueField: 'id',
@@ -32336,7 +32336,7 @@
 	                organisationUnitGroup.hide();
 	                treePanel.enable();
 	            } else if (param === 'group') {
-	                // DataOrb-561: avoid showing the group ids in the combobox when
+	                // DHIS2-561: avoid showing the group ids in the combobox when
 	                // loading a favorite and expanding the OU panel
 	                organisationUnitGroupStore.load();
 	
