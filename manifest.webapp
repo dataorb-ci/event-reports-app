@@ -9,11 +9,11 @@
     }
   },
   "appType": "APP",
-  "name": "DHIS2 event reports app",
+  "name": "DataOrb event reports app",
   "version": "33.2.37",
   "description": "Event reports app",
   "developer": {
-    "name": "DHIS2 visualization team"
+    "name": "DataOrb visualization team"
   },
   "icons": {
     "48": "icon.png"
